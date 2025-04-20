@@ -7,12 +7,7 @@
 </head>
 <body>
     <div id="particles-js"></div>
-
-    <header class="nav-bar">
-        <h1>Occxr</h1>
-    </header>
-
-    <nav class="nav-bar">
+    <nav style="position: relative; z-index: 1;">
         <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
         <a class="nav-link" href="{{ url_for('main.products') }}">Products</a>
 
@@ -22,7 +17,7 @@
                 <a class="nav-link" href="{{ url_for('main.add_product') }}">Add Product</a>
                 <a class="nav-link" href="{{ url_for('main.admin_orders') }}">Orders</a>
             {% else %}
-                <a class="nav-link" href="{{ url_for('main.user_orders') }}">Orders</a>
+                <a class="nav-link" href="{{ url_for('main.order_history') }}">My Orders</a>
             {% endif %}
             <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
         {% else %}
