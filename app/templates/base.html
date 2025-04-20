@@ -3,26 +3,25 @@
 <head>
     <title>{% block title %}Occxr Store{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-    <div id="particles-js"></div>
-
-    <div class="navbar">
-        <a href="{{ url_for('main.home') }}">Home</a>
-        <a href="{{ url_for('main.products') }}">Products</a>
-        <a href="{{ url_for('main.cart') }}">Cart</a>
+    <nav>
+        <a href="{{ url_for('main.home') }}">Home</a> |
+        <a href="{{ url_for('main.products') }}">Products</a> |
+        <a href="{{ url_for('main.cart') }}">Cart</a> |
         {% if current_user.is_authenticated %}
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
         {% else %}
-            <a href="{{ url_for('auth.login') }}">Login</a>
+        <a href="{{ url_for('auth.login') }}">Login</a> |
+        <a href="{{ url_for('auth.register') }}">Sign Up</a>
         {% endif %}
-    </div>
-
-    <div class="overlay">
+    </nav>
+    <div class="content">
         {% block content %}{% endblock %}
     </div>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="{{ url_for('static', filename='particles-init.js') }}"></script>
+<div id="tsparticles"></div>
+<script src="{{ url_for('static', filename='js/particles-init.js') }}"></script>
 </body>
 </html>

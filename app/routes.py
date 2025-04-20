@@ -87,7 +87,7 @@ def admin_orders():
 
     orders = Order.query.order_by(Order.timestamp.desc()).all()
     return render_template('admin_orders.html', orders=orders)
-
+    
 
 @main_bp.route('/start_crypto_checkout')
 @login_required
