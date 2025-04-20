@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 from .models import User
 from app import db
 
@@ -21,3 +21,16 @@ def register():
         flash('✅ Account created. Please log in.')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)
+
+@auth_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user)
+            flash(f"Welcome back, {user.username}!")
+            return redirect(url_for('main.dashboard' if user.is_admin else 'main.home'))
+        else:
+            flash('❌ Invalid username or password.')
+    return render_template('login.html', form=form)
