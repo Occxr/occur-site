@@ -45,10 +45,10 @@ def dashboard():
 
 @main_bp.route('/admin/product/add', methods=['GET', 'POST'])
 @login_required
-
+def add_product():
     if not current_user.is_admin:
         abort(403)
-def add_product():
+
     form = ProductForm()
     if form.validate_on_submit():
         new_product = Product(
