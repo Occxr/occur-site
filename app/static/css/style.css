@@ -39,10 +39,25 @@ main {
   border-radius: 10px;
   color: #00aaff;
   text-decoration: none;
-  margin-right: 10px;
+  margin: 5px;
   transition: background 0.2s ease;
 }
 
 .nav-link:hover, .btn:hover, .nav a:hover {
   background-color: rgba(0, 153, 255, 0.05);
+}
+
+.nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-family: 'Arial', sans-serif;
 }
