@@ -14,6 +14,12 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/')
 def home():
     return render_template('home.html')
+    
+@main_bp.route('/force-db-init')
+def force_db_init():
+    from app import db
+    db.create_all()
+    return "Database initialized"
 
 @main_bp.route('/products')
 def products():
