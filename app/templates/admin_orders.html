@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin — All Orders</h2>
+
+{% if orders %}
+  {% for order in orders %}
+    <div style="margin-bottom: 2rem; padding: 1rem; border-bottom: 1px solid #444;">
+      <h3>
+        Order #{{ order.id }} | 
+        User ID: {{ order.user_id }} | 
+        {{ order.timestamp.strftime('%Y-%m-%d %H:%M') }} | 
+        {% if order.is_paid %}
+          <span style="color: lime;">PAID</span>
+        {% else %}
+          <span style="color: orange;">PENDING</span>
+        {% endif %}
+      </h3>
+      <ul>
+        {% for item in order.items %}
+          <li>{{ item.product.name }} x{{ item.quantity }} — ${{ item.product.price * item.quantity }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No orders found.</p>
+{% endif %}
+{% endblock %}

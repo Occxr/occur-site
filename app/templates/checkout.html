@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Checkout Summary</h2>
+<ul>
+  {% for item in cart_items %}
+    <li>{{ item.product.name }} x{{ item.quantity }} — ${{ item.product.price * item.quantity }}</li>
+  {% endfor %}
+</ul>
+<p><strong>Total:</strong> ${{ total }}</p>
+<a href="{{ url_for('main.confirm_checkout') }}">Confirm & Complete Order</a>
+{% endblock %}

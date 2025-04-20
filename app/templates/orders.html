@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Order History</h2>
+
+{% if orders %}
+  {% for order in orders %}
+    <div class="order" style="margin-bottom: 2rem;">
+      <h3>Order #{{ order.id }} — {{ order.timestamp.strftime('%Y-%m-%d %H:%M') }}</h3>
+      <ul>
+        {% for item in order.items %}
+          <li>{{ item.product.name }} x{{ item.quantity }} — ${{ item.product.price * item.quantity }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>You have no orders yet.</p>
+{% endif %}
+{% endblock %}

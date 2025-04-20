@@ -5,18 +5,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('main.home') }}">Home</a> |
-        <a href="{{ url_for('main.products') }}">Products</a> |
-        <a href="{{ url_for('main.cart') }}">Cart</a> |
+    <div id="particles-js"></div>
+
+    <div class="navbar">
+        <a href="{{ url_for('main.home') }}">Home</a>
+        <a href="{{ url_for('main.products') }}">Products</a>
+        <a href="{{ url_for('main.cart') }}">Cart</a>
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
         {% else %}
-        <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.login') }}">Login</a>
         {% endif %}
-    </nav>
-    <div class="content">
+    </div>
+
+    <div class="overlay">
         {% block content %}{% endblock %}
     </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{{ url_for('static', filename='particles-init.js') }}"></script>
 </body>
 </html>
