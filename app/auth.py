@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user
 from .forms import SignupForm, LoginForm
 from .models import User
+from flask_login import login_required
 from app import db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
