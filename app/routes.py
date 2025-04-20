@@ -9,6 +9,10 @@ main_bp = Blueprint('main', __name__)
 def home():
     return render_template('home.html')
 
+@main_bp.route('/cart')
+def cart():
+    return render_template('cart.html')
+
 @main_bp.route('/products')
 def products():
     items = Product.query.all()
