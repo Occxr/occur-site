@@ -20,6 +20,12 @@ def force_db_init():
     from app import db
     db.create_all()
     return "Database initialized"
+    
+@main_bp.route('/cart')
+@login_required
+def cart():
+    user_cart = CartItem.query.filter_by(user_id=current_user.id).all()
+    return render_template("cart.html", cart=user_cart)
 
 @main_bp.route('/products')
 def products():
