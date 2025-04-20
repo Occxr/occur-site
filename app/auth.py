@@ -34,3 +34,10 @@ def login():
         else:
             flash('❌ Invalid username or password.')
     return render_template('login.html', form=form)
+    
+@auth_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('main.home'))
