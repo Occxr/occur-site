@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{% block title %}Occxr Store{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>Occxr</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-    <nav>
+    <div id="particles-js"></div>
+    <nav style="position: relative; z-index: 1;">
         <a href="{{ url_for('main.home') }}">Home</a> |
         <a href="{{ url_for('main.products') }}">Products</a> |
-        <a href="{{ url_for('main.cart') }}">Cart</a> |
-        {% if current_user.is_authenticated and current_user.is_admin %}<a href="{{ url_for('main.add_product') }}">Add Product</a> |{% endif %}
         {% if current_user.is_authenticated %}
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <a href="{{ url_for('main.cart') }}">Cart</a> |
+            {% if current_user.is_admin %}
+                <a href="{{ url_for('main.add_product') }}">Add Product</a> |
+            {% endif %}
+            <a href="{{ url_for('main.orders') }}">Orders</a> |
         {% else %}
-        <a href="{{ url_for('auth.login') }}">Login</a> |
-        <a href="{{ url_for('auth.register') }}">Sign Up</a>
+            <a href="{{ url_for('auth.login') }}">Login</a> |
+            <a href="{{ url_for('auth.register') }}">Sign Up</a> |
         {% endif %}
     </nav>
-    <div class="content">
+    <main>
         {% block content %}{% endblock %}
-    </div>
-<div id="tsparticles"></div>
-<script src="{{ url_for('static', filename='js/particles-init.js') }}"></script>
+    </main>
+    <script src="{{ url_for('static', filename='js/particles-init.js') }}"></script>
 </body>
 </html>
