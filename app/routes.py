@@ -31,6 +31,12 @@ def cart():
 def products():
     items = Product.query.all()
     return render_template('products.html', products=items)
+    
+@main_bp.route('/orders')
+@login_required
+def user_orders():
+    orders = Order.query.filter_by(user_id=current_user.id).order_by(Order.timestamp.desc()).all()
+    return render_template('user_orders.html', orders=orders)
 
 @main_bp.route('/product/<int:product_id>')
 def product_detail(product_id):

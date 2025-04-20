@@ -21,8 +21,11 @@
             {% if current_user.is_admin %}
                 <a class="nav-link" href="{{ url_for('main.add_product') }}">Add Product</a>
             {% endif %}
-            <a class="nav-link" href="{{ url_for('main.orders') }}">Orders</a>
-        {% else %}
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="{{ url_for('main.admin_orders') }}">Orders</a>
+          {% else %}
+            <a class="nav-link" href="{{ url_for('main.user_orders') }}">My Orders</a>
+          {% endif %}
             <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
             <a class="nav-link" href="{{ url_for('auth.register') }}">Sign Up</a>
         {% endif %}
