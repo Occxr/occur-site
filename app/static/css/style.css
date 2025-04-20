@@ -32,3 +32,17 @@ main {
   position: relative;
   z-index: 1;
 }
+
+.nav-link, .btn, .nav a {
+  border: 2px solid rgba(0, 153, 255, 0.25);
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: #00aaff;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: background 0.2s ease;
+}
+
+.nav-link:hover, .btn:hover, .nav a:hover {
+  background-color: rgba(0, 153, 255, 0.05);
+}
